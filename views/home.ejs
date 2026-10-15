@@ -1,0 +1,70 @@
+<%- include('partials/navbar') %>
+
+<div class="bg-light py-5 text-center">
+  <div class="container">
+    <h1 class="fw-bold">Temukan Tukang Terpercaya di <%= appName %></h1>
+    <p class="lead">Dari atap bocor sampai dinding retak, pesan jasa tukang dengan mudah.</p>
+
+    <form action="/" method="GET" class="row justify-content-center g-2">
+      <div class="col-md-4">
+        <input type="text" name="search" value="<%= search %>" class="form-control form-control-lg" placeholder="Cari jasa, misalnya: cat tembok">
+      </div>
+      <div class="col-md-3">
+        <select name="categoryId" class="form-select form-select-lg">
+          <option value="">Semua kategori</option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category.id %>" <%= categoryId == category.id ? 'selected' : '' %>>
+              <%= category.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select name="sort" class="form-select form-select-lg">
+          <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>Terbaru</option>
+          <option value="oldest" <%= sort === 'oldest' ? 'selected' : '' %>>Terlama</option>
+          <option value="price_asc" <%= sort === 'price_asc' ? 'selected' : '' %>>Harga termurah</option>
+          <option value="price_desc" <%= sort === 'price_desc' ? 'selected' : '' %>>Harga termahal</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-warning btn-lg">Cari</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h4 class="mb-3">Kategori Pekerjaan</h4>
+  <div class="d-flex flex-wrap gap-2 mb-5">
+    <a href="/" class="btn <%= categoryId === '' ? 'btn-dark' : 'btn-outline-dark' %>">Semua</a>
+    <% categories.forEach(category => { %>
+      <a href="/?categoryId=<%= category.id %>"
+         class="btn <%= categoryId == category.id ? 'btn-dark' : 'btn-outline-dark' %>">
+        <%= category.name %>
+      </a>
+    <% }) %>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="m-0">
+      <%= (search || categoryId) ? 'Hasil Pencarian' : 'Daftar Jasa' %>
+    </h4>
+    <% if (search || categoryId) { %>
+      <a href="/" class="btn btn-link">Reset pencarian</a>
+    <% } %>
+  </div>
+
+  <% if (items.length === 0) { %>
+    <div class="alert alert-info">Belum ada jasa yang cocok dengan pencarian kamu.</div>
+  <% } %>
+
+  <div class="row">
+    <% items.forEach(item => { %>
+      <%- include('partials/item-card', { item }) %>
+    <% }) %>
+  </div>
+</div>
+
+</body>
+</html>

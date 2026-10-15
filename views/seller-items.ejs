@@ -1,0 +1,95 @@
+<%- include('partials/navbar') %>
+
+<div class="container my-4">
+  <h3 class="mb-3">Kelola Layanan Saya</h3>
+
+  <% if (success) { %>
+    <div class="alert alert-success"><%= success %></div>
+  <% } %>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5><%= editItem ? 'Edit Jasa' : 'Tambah Jasa Baru' %></h5>
+
+      <form action="<%= editItem ? `/seller/items/${editItem.id}/update` : '/seller/items' %>" method="POST">
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Nama jasa</label>
+            <input type="text" name="name" class="form-control" value="<%= editItem ? editItem.name : '' %>">
+          </div>
+
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Harga (Rp)</label>
+            <input type="number" name="price" class="form-control" value="<%= editItem ? editItem.price : '' %>">
+          </div>
+
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Kategori</label>
+            <select name="categoryId" class="form-select">
+              <option value="">Pilih kategori</option>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"
+                  <%= editItem && editItem.CategoryId === category.id ? 'selected' : '' %>>
+                  <%= category.name %>
+                </option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">URL gambar</label>
+          <input type="text" name="imageUrl" class="form-control" value="<%= editItem ? editItem.imageUrl : '' %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Deskripsi</label>
+          <textarea name="description" class="form-control" rows="3"><%= editItem ? editItem.description : '' %></textarea>
+        </div>
+
+        <button class="btn btn-dark"><%= editItem ? 'Simpan Perubahan' : 'Tambah Jasa' %></button>
+        <% if (editItem) { %>
+          <a href="/seller/items" class="btn btn-secondary">Batal</a>
+        <% } %>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-bordered align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Nama</th>
+        <th>Kategori</th>
+        <th>Harga</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (items.length === 0) { %>
+        <tr><td colspan="5" class="text-center">Belum ada jasa.</td></tr>
+      <% } %>
+      <% items.forEach((item, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= item.name %></td>
+          <td><%= item.Category ? item.Category.name : '-' %></td>
+          <td><%= item.formattedPrice %></td>
+          <td class="d-flex gap-2">
+            <a href="/seller/items?edit=<%= item.id %>" class="btn btn-warning btn-sm">Edit</a>
+            <form action="/seller/items/<%= item.id %>/delete" method="POST" class="m-0"
+                  onsubmit="return confirm('Yakin hapus jasa ini?')">
+              <button class="btn btn-danger btn-sm">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

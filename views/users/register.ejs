@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Tukang Gercep</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: whitesmoke; margin: 0; padding: 0;">
+
+    <!-- Kotak utama form register -->
+    <div style="background-color: white; width: 320px; margin: 50px auto; padding: 25px; border-radius: 8px;">
+
+        <h1 style="text-align: center; color: forestgreen;">
+            Tukang Gercep
+        </h1>
+
+        <p style="text-align: center; color: dimgray;">
+            Buat akun baru kamu
+        </p>
+
+        <!-- Menampilkan pesan error dari controller -->
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p style="background-color: mistyrose; color: darkred; padding: 10px; border-radius: 4px;">
+                <%= error %>
+            </p>
+        <% } %>
+
+        <!-- Form pendaftaran -->
+        <form action="/register" method="POST">
+
+            <!-- Input username -->
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Masukkan username"
+                required
+                style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px;"
+            >
+
+            <!-- Input email -->
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Masukkan email"
+                required
+                style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px;"
+            >
+
+            <!-- Input nomor telepon (untuk semua pengguna) -->
+            <label for="phone">Nomor telepon</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Contoh: 081234567890"
+                pattern="[0-9]{9,15}"
+                title="Isi 9 sampai 15 angka, tanpa spasi atau tanda hubung"
+                required
+                style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px;"
+            >
+
+            <!-- Input password -->
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Minimal 8 karakter"
+                minlength="8"
+                required
+                style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px;"
+            >
+
+            <!-- Memilih peran pengguna -->
+            <label for="role">Daftar sebagai</label>
+            <select
+                id="role"
+                name="role"
+                required
+                onchange="toggleSeller()"
+                style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px; background-color: white;"
+            >
+                <option value="">Pilih peran</option>
+                <option value="buyer">Pembeli</option>
+                <option value="seller">Penyedia Jasa</option>
+            </select>
+
+            <!-- Kolom tambahan, hanya muncul (dan wajib) kalau memilih Penyedia Jasa -->
+            <div id="sellerFields" style="display: none;">
+                <label for="fullName">Nama lengkap</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Nama lengkap tukang"
+                    style="width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid silver; border-radius: 4px;"
+                >
+            </div>
+
+            <!-- Tombol daftar -->
+            <button
+                type="submit"
+                style="width: 100%; padding: 10px; margin-top: 15px; background-color: forestgreen; color: white; border: none; border-radius: 4px; cursor: pointer;"
+            >
+                Daftar
+            </button>
+
+        </form>
+
+        <!-- Link menuju halaman login -->
+        <p style="text-align: center; margin-top: 20px; color: dimgray;">
+            Sudah punya akun?
+            <a href="/login" style="color: forestgreen; text-decoration: none;">
+                Login di sini
+            </a>
+        </p>
+
+    </div>
+
+    <script>
+        // Tampilkan kolom nama lengkap dan jadikan wajib kalau memilih Penyedia Jasa
+        function toggleSeller() {
+            const isSeller = document.getElementById('role').value === 'seller';
+            document.getElementById('sellerFields').style.display = isSeller ? 'block' : 'none';
+            document.getElementById('fullName').required = isSeller;
+        }
+
+        // Jalankan sekali saat halaman dibuka (jaga-jaga kalau browser mengingat pilihan)
+        toggleSeller();
+    </script>
+
+</body>
+</html>

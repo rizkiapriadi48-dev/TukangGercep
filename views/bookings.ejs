@@ -1,0 +1,54 @@
+<%- include('partials/navbar') %>
+
+<div class="container my-4">
+  <h3 class="mb-3">Pesanan Saya</h3>
+
+  <% if (success) { %>
+    <div class="alert alert-success"><%= success %></div>
+  <% } %>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <% if (bookings.length === 0) { %>
+    <div class="alert alert-info">Kamu belum punya pesanan. <a href="/items">Cari jasa</a></div>
+  <% } %>
+
+  <% bookings.forEach(booking => { %>
+    <div class="card mb-3">
+      <div class="card-header d-flex justify-content-between">
+        <span>Pesanan #<%= booking.id %></span>
+        <span class="badge <%= booking.status === 'pending' ? 'bg-warning text-dark' : (booking.status === 'cancelled' ? 'bg-danger' : 'bg-success') %>">
+          <%= booking.status %>
+        </span>
+      </div>
+      <div class="card-body">
+        <p class="mb-1"><strong>Alamat:</strong> <%= booking.serviceAddress %></p>
+        <p class="mb-2"><strong>Catatan:</strong> <%= booking.notes || '-' %></p>
+
+        <% if (booking.photoUrl) { %>
+          <img src="<%= booking.photoUrl %>" alt="Foto kondisi" style="max-height: 150px;" class="rounded mb-2">
+        <% } %>
+
+        <ul class="list-group mb-3">
+          <% booking.BookingItems.forEach(bi => { %>
+            <li class="list-group-item d-flex justify-content-between">
+              <span><%= bi.Item ? bi.Item.name : 'Jasa dihapus' %> x <%= bi.quantity %></span>
+              <span><%= bi.Item ? bi.Item.formattedPrice : '-' %></span>
+            </li>
+          <% }) %>
+        </ul>
+
+        <% if (booking.status === 'pending') { %>
+          <form action="/bookings/<%= booking.id %>/cancel" method="POST"
+                onsubmit="return confirm('Batalkan pesanan ini?')">
+            <button class="btn btn-outline-danger btn-sm">Batalkan Pesanan</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+</body>
+</html>

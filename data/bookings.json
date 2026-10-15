@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "UserId": 4,
+    "serviceAddress": "Jl. Melati No. 10, Bandung",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "UserId": 5,
+    "serviceAddress": "Jl. Mawar No. 21, Bandung",
+    "status": "accepted"
+  },
+  {
+    "id": 3,
+    "UserId": 8,
+    "serviceAddress": "Jl. Kenanga No. 5, Cimahi",
+    "status": "in_progress"
+  },
+  {
+    "id": 4,
+    "UserId": 9,
+    "serviceAddress": "Jl. Anggrek No. 8, Bandung",
+    "status": "completed"
+  },
+  {
+    "id": 5,
+    "UserId": 10,
+    "serviceAddress": "Jl. Cempaka No. 17, Sumedang",
+    "status": "cancelled"
+  }
+]

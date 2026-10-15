@@ -1,0 +1,21 @@
+<%- include('partials/navbar') %>
+
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="m-0">Semua Jasa</h3>
+    <a href="/" class="btn btn-outline-dark">Cari jasa</a>
+  </div>
+
+  <% if (items.length === 0) { %>
+    <div class="alert alert-info">Belum ada jasa yang tersedia.</div>
+  <% } %>
+
+  <div class="row">
+    <% items.forEach(item => { %>
+      <%- include('partials/item-card', { item }) %>
+    <% }) %>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "UserId": 1,
+    "fullName": "Andi Saputra",
+    "phone": "081200000001"
+  },
+  {
+    "id": 2,
+    "UserId": 2,
+    "fullName": "Budi Santoso",
+    "phone": "081200000002"
+  },
+  {
+    "id": 3,
+    "UserId": 3,
+    "fullName": "Citra Lestari",
+    "phone": "081200000003"
+  },
+  {
+    "id": 4,
+    "UserId": 6,
+    "fullName": "Fajar Pratama",
+    "phone": "081200000006"
+  },
+  {
+    "id": 5,
+    "UserId": 7,
+    "fullName": "Gita Permata",
+    "phone": "081200000007"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "BookingId": 1,
+    "ItemId": 1,
+    "quantity": 1
+  },
+  {
+    "id": 2,
+    "BookingId": 2,
+    "ItemId": 2,
+    "quantity": 1
+  },
+  {
+    "id": 3,
+    "BookingId": 3,
+    "ItemId": 3,
+    "quantity": 1
+  },
+  {
+    "id": 4,
+    "BookingId": 4,
+    "ItemId": 4,
+    "quantity": 1
+  },
+  {
+    "id": 5,
+    "BookingId": 5,
+    "ItemId": 5,
+    "quantity": 1
+  }
+]

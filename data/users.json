@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "username": "andi_tukang",
+    "email": "andi.tukang@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "seller"
+  },
+  {
+    "id": 2,
+    "username": "budi_konstruksi",
+    "email": "budi.konstruksi@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "seller"
+  },
+  {
+    "id": 3,
+    "username": "citra_renovasi",
+    "email": "citra.renovasi@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "seller"
+  },
+  {
+    "id": 4,
+    "username": "dina_pelanggan",
+    "email": "dina.pelanggan@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "buyer"
+  },
+  {
+    "id": 5,
+    "username": "eko_pelanggan",
+    "email": "eko.pelanggan@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "buyer"
+  },
+  {
+    "id": 6,
+    "username": "fajar_tukang",
+    "email": "fajar.tukang@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "seller"
+  },
+  {
+    "id": 7,
+    "username": "gita_tukang",
+    "email": "gita.tukang@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "seller"
+  },
+  {
+    "id": 8,
+    "username": "hadi_pelanggan",
+    "email": "hadi.pelanggan@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "buyer"
+  },
+  {
+    "id": 9,
+    "username": "intan_pelanggan",
+    "email": "intan.pelanggan@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "buyer"
+  },
+  {
+    "id": 10,
+    "username": "joko_pelanggan",
+    "email": "joko.pelanggan@example.com",
+    "password": "$2b$10$dummyHashedPasswordForDemoOnly000000000000000000000",
+    "role": "buyer"
+  }
+]

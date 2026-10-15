@@ -1,0 +1,74 @@
+<%- include('partials/navbar') %>
+
+<div class="container my-4">
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="<%= item.imageUrl || 'https://placehold.co/600x400?text=TukangTemu' %>"
+        class="img-fluid rounded"
+        alt="<%= item.name %>">
+    </div>
+
+    <div class="col-md-6">
+      <span class="badge bg-secondary"><%= item.Category ? item.Category.name : 'Tanpa kategori' %></span>
+      <h2 class="mt-2"><%= item.name %></h2>
+      <h4 class="text-success"><%= item.formattedPrice %></h4>
+      <p class="text-muted">
+        Penyedia jasa:
+        <strong>
+          <%= item.User && item.User.ProviderProfile
+                ? item.User.ProviderProfile.fullName
+                : (item.User ? item.User.username : '-') %>
+        </strong>
+        <% if (item.User && item.User.ProviderProfile && item.User.ProviderProfile.phone) { %>
+          (<%= item.User.ProviderProfile.phone %>)
+        <% } %>
+      </p>
+      <p><%= item.description || 'Belum ada deskripsi.' %></p>
+
+      <hr>
+
+      <% if (currentUser && currentUser.role === 'buyer') { %>
+        <h5>Pesan Jasa Ini</h5>
+        <form action="/bookings" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="itemId" value="<%= item.id %>">
+
+          <div class="mb-2">
+            <label class="form-label">Jumlah</label>
+            <input type="number" name="quantity" value="1" min="1" class="form-control">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Alamat pengerjaan</label>
+            <input type="text" name="serviceAddress" class="form-control">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Catatan / informasi pesanan</label>
+            <textarea name="notes" class="form-control" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Foto kondisi bangunan (opsional, JPG/PNG/WEBP maks 2 MB)</label>
+            <input type="file" name="photo" accept="image/jpeg,image/png,image/webp" class="form-control">
+          </div>
+
+          <button class="btn btn-warning">Pesan Sekarang</button>
+        </form>
+      <% } else if (currentUser && currentUser.role === 'seller') { %>
+        <div class="alert alert-secondary">Akun seller tidak bisa memesan jasa.</div>
+      <% } else { %>
+        <div class="alert alert-info">
+          Silakan <a href="/login">login</a> sebagai pelanggan untuk memesan jasa ini.
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
